@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-<title>🎯 GhostSniperX</title>
+<title>🎯 MULTIPLIER</title>
 
 <!-- ══ PWA MANIFEST (inline) ══ -->
 
 <!-- ══ iOS PWA META TAGS ══ -->
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<meta name="apple-mobile-web-app-title" content="GhostSniperX"/>
+<meta name="apple-mobile-web-app-title" content="MULTIPLIER"/>
 <meta name="mobile-web-app-capable" content="yes"/>
 <meta name="theme-color" content="#1c1e2e"/>
 <meta name="description" content="pump.fun Solana token sniper — live feed, filters, AI analysis, P&L tracker"/>
@@ -22,7 +22,7 @@
 
 
 <!-- ══ OPEN GRAPH (share preview) ══ -->
-<meta property="og:title" content="GhostSniperX — Solana Token Sniper"/>
+<meta property="og:title" content="MULTIPLIER — Solana Token Sniper"/>
 <meta property="og:description" content="Live Solana token sniper with AI analysis and P&L tracking"/>
 <meta property="og:type" content="website"/>
 
@@ -361,7 +361,7 @@ textarea.mfld{resize:vertical;}
 <div id="topbar">
   <div class="tl">
     <svg class="logo-svg" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="sg" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#a78bfa" stop-opacity="0.15"/><stop offset="100%" stop-color="#6366f1" stop-opacity="0"/></radialGradient><linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#818cf8"/><stop offset="50%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#6366f1"/></linearGradient><clipPath id="sc"><circle cx="18" cy="18" r="15"/></clipPath></defs><circle cx="18" cy="18" r="15" fill="url(#sg)"/><circle cx="18" cy="18" r="15" stroke="url(#rg)" stroke-width="1.5" fill="none"/><circle cx="18" cy="18" r="9" stroke="#818cf8" stroke-width="1" fill="none" class="logo-cross"/><circle cx="18" cy="18" r="2.5" fill="#00d474"/><circle cx="18" cy="18" r="1.2" fill="#fff"/><line x1="18" y1="3" x2="18" y2="12" stroke="#a78bfa" stroke-width="1.2" class="logo-cross"/><line x1="18" y1="24" x2="18" y2="33" stroke="#a78bfa" stroke-width="1.2" class="logo-cross"/><line x1="3" y1="18" x2="12" y2="18" stroke="#a78bfa" stroke-width="1.2" class="logo-cross"/><line x1="24" y1="18" x2="33" y2="18" stroke="#a78bfa" stroke-width="1.2" class="logo-cross"/><line x1="4" y1="18" x2="32" y2="18" stroke="#00d474" stroke-width="0.8" clip-path="url(#sc)" class="logo-scan"/><path d="M6 10 L6 6 L10 6" stroke="#818cf8" stroke-width="1" fill="none"/><path d="M26 6 L30 6 L30 10" stroke="#818cf8" stroke-width="1" fill="none"/><path d="M6 26 L6 30 L10 30" stroke="#818cf8" stroke-width="1" fill="none"/><path d="M30 26 L30 30 L26 30" stroke="#818cf8" stroke-width="1" fill="none"/></svg>
-    <div><div style="display:flex;align-items:center;gap:4px;"><span class="brand-text">GHOSTSNIPERX</span><span class="brand-dot"></span></div><div class="tl-sub-new">DEAD COINS · SECOND CHANCES · v3.1</div></div>
+    <div><div style="display:flex;align-items:center;gap:4px;"><span class="brand-text">MULTIPLIER</span><span class="brand-dot"></span></div><div class="tl-sub-new">FIND WINNERS · MULTIPLY GAINS · v1.0</div></div>
   </div>
   <div class="tb-div"></div>
   <div id="tabs">
@@ -571,7 +571,8 @@ textarea.mfld{resize:vertical;}
         <span style="font-family:'Cinzel','Georgia',serif;font-size:10px;color:var(--ac);letter-spacing:.15em;" id="sniper-status">READY</span>
       </div>
       <span style="font-size:11px;" id="pp-status" style="color:var(--mu);">PumpPortal WebSocket · pump.fun real-time feed</span>
-      <button class="mbtn sm" onclick="runSniper()" style="margin-left:auto;">🔌 CONNECT</button>
+      <button class="mbtn sm" id="sniper-connect-btn" onclick="toggleSniper()" style="margin-left:auto;">🔌 CONNECT</button>
+      <button class="mbtn sm" id="sniper-refresh-btn" onclick="manualRefreshSniper()" style="font-size:9px;border:1px solid var(--ac);background:rgba(99,102,241,.15);color:var(--ac);padding:4px 12px;border-radius:4px;cursor:pointer;font-weight:700;">⟳ REFRESH</button>
       <span style="font-size:10px;color:var(--go);font-weight:700;opacity:0;transition:opacity .3s;" id="sniper-flash"></span>
     </div>
     <div style="font-size:10px;color:var(--mu);margin-bottom:10px;" id="sniper-count">No tokens yet — click CONNECT to start live feed</div>
@@ -584,7 +585,7 @@ textarea.mfld{resize:vertical;}
         <button id="preset-hot" onclick="presetSniper('hot')" style="font-size:9px;border:1px solid var(--ac);background:rgba(99,102,241,.2);color:var(--ac);padding:2px 7px;border-radius:3px;cursor:pointer;font-weight:700;box-shadow:0 0 0 2px var(--ac);">🔥 HOT</button>
         <button id="preset-sniper" onclick="presetSniper('sniper')" style="font-size:9px;border:1px solid #f59e0b;background:rgba(245,158,11,.1);color:#f59e0b;padding:2px 7px;border-radius:3px;cursor:pointer;">⚡ SNIPER</button>
         <button onclick="resetFilters()" style="margin-left:auto;font-size:9px;border:1px solid var(--bd);background:none;color:var(--mu);padding:2px 8px;border-radius:3px;cursor:pointer;">RESET</button>
-        <button onclick="updateSniperTable()" style="font-size:9px;border:1px solid var(--ac);background:none;color:var(--ac);padding:2px 8px;border-radius:3px;cursor:pointer;font-weight:700;">APPLY ▸</button>
+        <button onclick="applyAllFilters()" style="font-size:9px;border:1px solid var(--ac);background:rgba(99,102,241,.2);color:var(--ac);padding:2px 8px;border-radius:3px;cursor:pointer;font-weight:700;">APPLY ▸</button>
       </div>
 
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;">
@@ -811,7 +812,7 @@ textarea.mfld{resize:vertical;}
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
         <!-- Title -->
         <span style="font-family:'Cinzel','Georgia',serif;font-size:10px;font-weight:900;letter-spacing:.12em;">
-          <span id="gm-title-snipe" style="color:#f59e0b;">🎯 GOOD MOVERS</span>
+          <span id="gm-title-snipe" style="color:#f59e0b;">🎯 TOP PICKS — best scoring live tokens</span>
           <span id="gm-title-revival" style="color:#a78bfa;display:none;">🌙 REVIVAL ALERTS</span>
         </span>
         <span id="gm-badge" style="font-size:9px;font-weight:700;background:#f59e0b;color:#000;padding:1px 7px;border-radius:10px;display:none;"></span>
@@ -836,6 +837,10 @@ textarea.mfld{resize:vertical;}
       </div>
     </div>
 
+    <!-- Live token table header -->
+    <div id="sniper-table-header" style="display:none;font-family:'Cinzel','Georgia',serif;font-size:9px;font-weight:900;letter-spacing:.15em;color:var(--mu);margin:14px 0 6px;">
+      📋 LIVE TOKEN TABLE — filtered results from WebSocket feed
+    </div>
     <div id="sniper-res"></div>
     <div id="sniper-emp" class="empty">
       <span class="eico" style="font-size:36px;">🟢</span>
@@ -1491,7 +1496,7 @@ function showErr(msg){
   el.style.display='block';
   el.querySelector('.etxt').textContent='⚠ ERROR';
   el.querySelector('.esub').textContent=msg;
-  console.error('GhostSniperX error:',msg);
+  console.error('MULTIPLIER error:',msg);
 }
 
 /* ══ HELPERS ══ */
@@ -1928,6 +1933,9 @@ function connectPumpPortal(){
     document.getElementById('sniper-status').textContent='🟢 CONNECTED';
     document.getElementById('sniper-load').style.display='none';
     document.getElementById('sniper-emp').style.display='none';
+    // Update CONNECT button -> DISCONNECT
+    var cBtn = document.getElementById('sniper-connect-btn');
+    if(cBtn){ cBtn.textContent='⏸ DISCONNECT'; cBtn.style.background='rgba(239,68,68,.15)'; cBtn.style.color='#ef4444'; }
   };
 
   ppWS.onmessage = function(evt){
@@ -2056,12 +2064,16 @@ function connectPumpPortal(){
     ppConnected = false;
     setStatus('⚠ WebSocket error — retrying...','var(--dn)');
     document.getElementById('sniper-status').textContent='⚠ ERROR';
+    var cBtn = document.getElementById('sniper-connect-btn');
+    if(cBtn){ cBtn.textContent='🔌 CONNECT'; cBtn.style.background=''; cBtn.style.color=''; }
   };
 
   ppWS.onclose = function(){
     ppConnected = false;
     setStatus('Disconnected — reconnecting in 5s...','var(--mu)');
     document.getElementById('sniper-status').textContent='RECONNECTING...';
+    var cBtn = document.getElementById('sniper-connect-btn');
+    if(cBtn){ cBtn.textContent='🔌 CONNECT'; cBtn.style.background=''; cBtn.style.color=''; }
     setTimeout(connectPumpPortal, 5000);
   };
 }
@@ -2410,6 +2422,8 @@ function updateSniperTable(){
     return;
   }
   document.getElementById('sniper-emp').style.display='none';
+  var th = document.getElementById('sniper-table-header');
+  if(th) th.style.display='block';
 
   // ── Build table ───────────────────────────────────────
   var html = '<div style="overflow-x:auto;border-radius:8px;border:1px solid var(--bd);">'
@@ -2691,8 +2705,10 @@ function renderFastMovers(){
       .filter(function(t){
         if(!t || t.devSelling) return false;
         var ageMin = (Date.now() - t.ts) / 60000;
-        if(ageMin > 120) return false;
-        if(t.mcUSD > 60000) return false;
+        var maxAgeCard = getFilterVal('sn-age', 2) * 60; // convert hrs to mins
+        if(ageMin > Math.min(120, maxAgeCard)) return false;
+        var maxMCcard = getFilterVal('sn-mc', 60000);
+        if(t.mcUSD > maxMCcard) return false;
         var total = t.buys + t.sells;
         var bsr = total > 0 ? t.buys/total : 1;
         if(total > 10 && bsr < 0.5) return false;
@@ -2702,7 +2718,9 @@ function renderFastMovers(){
           if(pendingAge < 10000) return false; // wait up to 10s for GMGN
           t._gmgnPending = false; // fail-open
         }
-        return tokenScore(t) >= 35;
+        // Use filter min score if set — else default 35
+        var cardMinScore = getFilterVal('sn-minscore', 35);
+        return tokenScore(t) >= Math.max(35, cardMinScore);
       })
       .sort(function(a, b){
         return (getMcGain(b,60)*0.7 + getMcGain(b,300)*0.3) - (getMcGain(a,60)*0.7 + getMcGain(a,300)*0.3);
@@ -3665,6 +3683,45 @@ function startAutoRefresh(){
   if(!window._gmRT){window._gmRT=setInterval(function(){renderFastMovers();},5000);}
 }
 
+function applyAllFilters(){
+  updateSniperTable();   // updates the token table below
+  renderFastMovers();    // updates the GOOD MOVERS cards
+  // Show brief feedback
+  var btn = document.querySelector('[onclick="applyAllFilters()"]');
+  if(btn){ 
+    var orig = btn.textContent;
+    btn.textContent = '✓ APPLIED';
+    setTimeout(function(){ btn.textContent = orig; }, 800);
+  }
+}
+
+function manualRefreshSniper(){
+  var btn = document.getElementById('sniper-refresh-btn');
+  if(btn){ btn.textContent='...'; btn.disabled=true; }
+  updateSniperTable();
+  renderFastMovers();
+  setTimeout(function(){
+    if(btn){ btn.textContent='⟳ REFRESH'; btn.disabled=false; }
+  }, 1000);
+}
+
+function toggleSniper(){
+  if(ppConnected){
+    // Disconnect
+    if(ppWS){ try{ ppWS.close(); }catch(e){} ppWS=null; }
+    ppConnected = false;
+    document.getElementById('sniper-status').textContent='READY';
+    document.getElementById('sniper-dot').className='pdot';
+    var btn = document.getElementById('sniper-connect-btn');
+    if(btn){ btn.textContent='🔌 CONNECT'; btn.style.background=''; btn.style.color=''; }
+    var rbtn = document.getElementById('sniper-refresh-btn');
+    if(rbtn) rbtn.style.display='none';
+    document.getElementById('sniper-emp').style.display='block';
+  } else {
+    runSniper();
+  }
+}
+
 function runSniper(){
   document.getElementById('sniper-load').style.display='block';
   document.getElementById('sniper-res').innerHTML='';
@@ -4593,7 +4650,7 @@ function renderGrim(){
 <div id="ios-install-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#242638;border-top:1px solid #34375a;padding:12px 16px;z-index:9999;align-items:center;gap:12px;">
   <div style="font-size:28px;">🎯</div>
   <div style="flex:1;">
-    <div style="font-family:'Cinzel','Georgia',serif;font-size:12px;font-weight:700;color:#818cf8;">Install GhostSniperX</div>
+    <div style="font-family:'Cinzel','Georgia',serif;font-size:12px;font-weight:700;color:#818cf8;">Install MULTIPLIER</div>
     <div style="font-size:11px;color:#6870a0;margin-top:2px;">Tap <strong style="color:#c8d0f0;">Share</strong> then <strong style="color:#c8d0f0;">"Add to Home Screen"</strong></div>
   </div>
   <button onclick="document.getElementById('ios-install-banner').style.display='none';" style="font-size:18px;border:none;background:none;color:#6870a0;cursor:pointer;padding:4px;">✕</button>
